@@ -1,23 +1,27 @@
 package app.servlets;
 
-import app.entities.User;
-import app.entities.UsersEntity;
-import app.model.ModelUsers;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.StatelessSession;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
+import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import app.entities.User;
 
 public class RegisterServlet extends HttpServlet {
+
+    private SessionFactory factory;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        factory = (SessionFactory) SpringContextProvider.getContext().getBean("sessionFactory");
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,20 +34,15 @@ public class RegisterServlet extends HttpServlet {
         String email = req.getParameter("email");
         String pass = req.getParameter("pass");
         String wallet = req.getParameter("wallet");
-        UsersEntity user = new UsersEntity();
+        User user = new User();
         user.setEmail(email);
         user.setPass(pass);
         user.setWallet(wallet);
 
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-        Session session = sessionFactory.openSession();
+        Session session = factory.openSession();
         session.beginTransaction();
         session.saveOrUpdate(user);
 
-
-//        ModelUsers modelUsers = ModelUsers.getInstanse();
-//        modelUsers.addUser(user);
-        req.setAttribute("email", email);
         doGet(req,resp);
     }
 }
