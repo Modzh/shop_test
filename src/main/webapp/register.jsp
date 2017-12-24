@@ -6,15 +6,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="registerBacking" class="app.backing.RegisterBackingBean"/>
+<jsp:setProperty name="registerBacking" property="request" value="request"/>
 <html>
 <head>
     <title>registrationSubmitAction</title>
 </head>
 <body>
 <div>
-    <%
-        if(request.getAttribute("email") != null ) out.println("<p>User with email "+ request.getAttribute("email") + " successfully added!</p>");
-    %>
+    <%=registerBacking.getMessage()%>
+    <%--<%--%>
+        <%--if(request.getAttribute("email") != null ) out.println("<p>User with email "+ request.getAttribute("email") + " successfully added!</p>");--%>
+    <%--%>--%>
 
 
     <div>
