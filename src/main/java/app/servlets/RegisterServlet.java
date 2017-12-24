@@ -42,6 +42,7 @@ public class RegisterServlet extends HttpServlet {
         Session session = factory.openSession();
         session.beginTransaction();
         session.saveOrUpdate(user);
+        session.getTransaction().commit();
 
         doGet(req,resp);
     }

@@ -28,6 +28,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+
         <!-- Spring -->
         <spring-framework.version>5.0.2.RELEASE</spring-framework.version>
 

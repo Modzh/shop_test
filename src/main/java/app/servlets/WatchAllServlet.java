@@ -14,9 +14,9 @@ public class WatchAllServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ModelUsers modelUsers = ModelUsers.getInstanse();
-        List<String> listEmail = modelUsers.list();
-        req.setAttribute("listEmail", listEmail);
+        //ModelUsers modelUsers = ModelUsers.getInstanse();
+//        List<String> listEmail = modelUsers.list();
+//        req.setAttribute("listEmail", listEmail);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("pages/watchAll.jsp");
         requestDispatcher.forward(req,resp);

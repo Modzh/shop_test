@@ -26,8 +26,8 @@ public class AuthorizeServlet extends HttpServlet {
         String flag = null;
         req.setAttribute("email",email);
 
-        flag = ModelUsers.getInstanse().checkUser(email,pass) ? "success" : "fail";
-        req.setAttribute("flag", flag);
+        //flag = ModelUsers.getInstanse().checkUser(email,pass) ? "success" : "fail";
+        //req.setAttribute("flag", flag);
 
         doGet(req,resp);
 

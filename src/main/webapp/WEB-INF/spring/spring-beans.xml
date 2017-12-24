@@ -17,9 +17,9 @@
         <property name="packagesToScan" value="app.entities"/>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL57Dialect</prop>
                 <prop key="hibernate.current_session_context_class">thread</prop>
-                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
@@ -29,6 +29,8 @@
         <!--<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />-->
     <!--</bean>-->
 
-    <bean class="app.servlets.SpringContextProvider"/>
+    <bean id="contextProvider" class="app.servlets.SpringContextProvider">
+        <!--<property name="context" ref="webApplicationContext"/>-->
+    </bean>
 
 </beans>

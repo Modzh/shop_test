@@ -58,7 +58,7 @@ public class Good {
     }
 
     @Basic
-    @Column(name = "description", nullable = true, length = -1)
+    @Column(name = "description", nullable = true, length = 5000)
     public String getDescription() {
         return description;
     }
@@ -68,7 +68,7 @@ public class Good {
     }
 
     @Basic
-    @Column(name = "short_desc", nullable = true, length = -1)
+    @Column(name = "short_desc", nullable = true, length = 500)
     public String getShortDesc() {
         return shortDesc;
     }
