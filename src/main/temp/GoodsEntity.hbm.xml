@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="app.entities.GoodsEntity" table="goods" schema="shop">
+        <id name="goodsId">
+            <column name="goods_id" sql-type="int(11)"/>
+        </id>
+        <property name="sellerId">
+            <column name="seller_id" sql-type="int(11)"/>
+        </property>
+        <property name="buyerId">
+            <column name="buyer_id" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="description">
+            <column name="description" sql-type="text" not-null="true"/>
+        </property>
+        <property name="shortDesc">
+            <column name="short_desc" sql-type="text" not-null="true"/>
+        </property>
+        <property name="price">
+            <column name="price" sql-type="double unsigned" precision="-1"/>
+        </property>
+        <property name="photoAddress">
+            <column name="photo_address" sql-type="varchar(100)" length="100" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
