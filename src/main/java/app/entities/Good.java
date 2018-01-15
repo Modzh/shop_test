@@ -1,26 +1,28 @@
 package app.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "goods")
-public class Good {
+public class Good{
     private int goodsId;
     private int sellerId;
+    private String name;
     private Integer buyerId;
     private String description;
     private String shortDesc;
-    private long price;
+    private double price;
     private String photoAddress;
 
     public Good() {
 
     }
 
-    public Good(int goodsId, int sellerId, String description, String shortDesc, long price, String photoAddress) {
-        this.goodsId = goodsId;
+    public Good(int sellerId, String name, String shortDesc, String description, double price, String photoAddress) {
         this.sellerId = sellerId;
+        this.name = name;
         this.description = description;
         this.shortDesc = shortDesc;
         this.price = price;
@@ -28,7 +30,8 @@ public class Good {
     }
 
     @Id
-    @Column(name = "goods_id", nullable = false)
+    @Column(name = "goodsId", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getGoodsId() {
         return goodsId;
     }
@@ -38,7 +41,7 @@ public class Good {
     }
 
     @Basic
-    @Column(name = "seller_id", nullable = false)
+    @Column(name = "sellerId", nullable = false)
     public int getSellerId() {
         return sellerId;
     }
@@ -48,7 +51,7 @@ public class Good {
     }
 
     @Basic
-    @Column(name = "buyer_id", nullable = true)
+    @Column(name = "buyerId", nullable = true)
     public Integer getBuyerId() {
         return buyerId;
     }
@@ -56,6 +59,17 @@ public class Good {
     public void setBuyerId(Integer buyerId) {
         this.buyerId = buyerId;
     }
+
+    @Basic
+    @Column(name = "name", nullable = false)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
     @Basic
     @Column(name = "description", nullable = true, length = 5000)
@@ -68,7 +82,7 @@ public class Good {
     }
 
     @Basic
-    @Column(name = "short_desc", nullable = true, length = 500)
+    @Column(name = "shortDesc", nullable = true, length = 500)
     public String getShortDesc() {
         return shortDesc;
     }
@@ -79,16 +93,16 @@ public class Good {
 
     @Basic
     @Column(name = "price", nullable = false, precision = 0)
-    public long getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
     @Basic
-    @Column(name = "photo_address", nullable = true, length = 100)
+    @Column(name = "photoAddress", nullable = true, length = 100)
     public String getPhotoAddress() {
         return photoAddress;
     }

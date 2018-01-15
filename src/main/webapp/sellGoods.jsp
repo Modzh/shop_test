@@ -14,13 +14,17 @@
     <div>
         <form method="post">
             <label>Input name</label>
-            <input type ="text" name = "goodsName">
+            <input type ="text" name = "nameGoods">
+            <br>
             <label>Input short description</label>
             <input type="text" name="short_desc">
+            <br>
             <label>Input price</label>
-            <input type="number" name="price">
+            <input type="text" name="price">
+            <br>
             <label>Input full description</label>
             <input type="text" name="description">
+            <br>
             <button type="submit">Submit</button>
         </form>
     </div>

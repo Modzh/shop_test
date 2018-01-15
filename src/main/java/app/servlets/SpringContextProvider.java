@@ -7,7 +7,11 @@ import org.springframework.context.ApplicationContextAware;
 
 /**
  * Created by HEDIN on 24.12.2017.
+ *
+ * Сервлет для получения context, на основе которого создаётся sessionFactory для создания, непосредственно, session к базе данных
  */
+
+
 public class SpringContextProvider implements ApplicationContextAware {
     private static ApplicationContext context;
 

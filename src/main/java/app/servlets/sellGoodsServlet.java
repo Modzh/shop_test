@@ -11,8 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Сервлет, обрабатывающий добавление нового товара в базу, страница sellGoods.jsp
+ */
+
 public class sellGoodsServlet extends HttpServlet {
 private SessionFactory factory;
+
+    /**
+     * при инициализации создаётся sessionFactory через {@link SpringContextProvider}
+     */
     @Override
     public void init() throws ServletException {
         super.init();
@@ -25,6 +33,14 @@ private SessionFactory factory;
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("sellGoods.jsp");
         requestDispatcher.forward(req,resp);
     }
+
+    /**
+     * doPost осуществляет добавление товара в базу
+     * получает все необходимые параметры для описания сущности "Good"
+     * получает id продавца из session.getParameter (TODO)
+     * создаёт новый объект сущности Good и вбивает его в базу
+     * перекидывает на doGet
+     */
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

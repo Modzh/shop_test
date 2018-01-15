@@ -1,11 +1,12 @@
 package app.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable{
     private int userId;
     private String email;
     private String pass;
@@ -21,7 +22,7 @@ public class User {
     }
 
     @Id
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "userId", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getUserId() {
         return userId;

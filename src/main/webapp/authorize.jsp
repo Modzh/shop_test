@@ -15,14 +15,10 @@
         <%
             if(request.getAttribute("flag") != null) {
                 switch(request.getAttribute("flag").toString() ) {
-                    case "success" : {out.println("<p>You have successfully authorized!</p>"); break;}
+                    case "success" : {out.println("<p>You have successfully authorized, "+ request.getAttribute("email")+"</p>"); break;}
                     case "fail" : {out.println("<p>Email or password is invalid.</p>"); break;}
                 }
-
-                out.println(request.getAttribute("email"));
             }
-//            if (request.getAttribute("flag") == "success") out.println("<p>You have successfully authorized!</p>");
-//            else if (request.getAttribute("flag") == "fail") out.println("<p>Email or password is invalid.</p>");
         %>
     </div>
 

@@ -46,4 +46,24 @@
         <url-pattern>/authorize</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>sellGoods</servlet-name>
+        <servlet-class>app.servlets.sellGoodsServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>sellGoods</servlet-name>
+        <url-pattern>/sellGoods</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>watchGood</servlet-name>
+        <servlet-class>app.servlets.WatchGood</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>watchGood</servlet-name>
+        <url-pattern>/watchGood</url-pattern>
+    </servlet-mapping>
+
 </web-app>
