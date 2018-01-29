@@ -18,80 +18,50 @@
 </head>
 <body>
     <div>
-        <%--<%ArrayList<User> users = (ArrayList<User>) request.getAttribute("users");%>--%>
-        <%--<%--%>
-            <%--out.println("<table style='width:100%' border='1'>");--%>
-            <%--out.println("<tr> " +--%>
-                            <%--"<th>ID</th> " +--%>
-                            <%--"<th>Email</th> " +--%>
-                            <%--"<th>Password</th> " +--%>
-                            <%--"<th>Wallet</th> " +--%>
-                        <%--"</tr>");--%>
-            <%--for(User u : users) {--%>
-
-                <%--out.println("<tr> " +--%>
-                                <%--"<td>" +u.getUserId()+"</td> " +--%>
-                                <%--"<td>"+u.getEmail()+"</td> " +--%>
-                                <%--"<td>"+u.getPass()+"</td> " +--%>
-                                <%--"<td>"+u.getWallet()+"</td> " +--%>
-                            <%--"</tr>");--%>
-            <%--}--%>
-            <%--out.println("</table>");--%>
-        <%--%>--%>
-
-        <c:set value="${request.getAttribute('users')}" var="users" scope="request" />
-        <c:forEach items="${users}" var="u">
-            <c:set value="id ${u.getUserId}" var="userId"></c:set>
-            <c:set value="${u.getEmail}" var="email"></c:set>
-            <c:set value="${u.getPass}" var="pass"></c:set>
-            <c:set value="${u.getWallet}" var="wallet"></c:set>
-            <c:out value="${u.getUserId}" />
+        <table style='width:100%' border='1'>
             <tr>
-                <td><c:out value="${u.getUserId}"       />  </td>
-                <td><c:out value="${u.getEmail}"    />  </td>
-                <td><c:out value="${u.getPass}"     />  </td>
-                <td><c:out value="${u.getWallet}"   />  </td>
-
-
-                    <td><c:out value="${userId}"       />  </td>
-                    <td><c:out value="${email}"    />  </td>
-                    <td><c:out value="${pass}"     />  </td>
-                    <td><c:out value="${wallet}"   />  </td>
+                <th>UserId</th>
+                <th>Email</th>
+                <th>Passworc</th>
+                <th>Wallet</th>
             </tr>
-        </c:forEach>
+            <c:forEach items="${requestScope.users}" var="u">
+                <tr>
+                        <td><c:out value="${u.userId}"   />  </td>
+                        <td><c:out value="${u.email}"    />  </td>
+                        <td><c:out value="${u.pass}"     />  </td>
+                        <td><c:out value="${u.wallet}"   />  </td>
+                </tr>
+            </c:forEach>
+        </table>
     </div>
 
     <div>
-            <%ArrayList<Good> goods = (ArrayList<Good>) request.getAttribute("goods");%>
-            <%
-            out.println("<table style='width:100%' border='1'>");
-            out.println("<tr> " +
-                            "<th>ID</th>"                +
-                            "<th>Name</th>"              +
-                            "<th>Seller id</th>"         +
-                            "<th>Price</th>"             +
-                            "<th>Short Description</th>" +
-                            "<th>Description</th>"       +
-                            "<th>Photo</th>"             +
-                        "</tr>");
-            for(Good g : goods) {
-                out.println("<tr> " +
-                                 "<td>" +g.getGoodsId()+"</td> "    +
-                                 "<td>"+g.getName()+"</td> "        +
-                                 "<td>"+g.getSellerId()+"</td> "    +
-                                 "<td>"+g.getPrice()+"</td> "       +
-                                 "<td>"+g.getShortDesc()+"</td> "   +
-                                 "<td>"+g.getDescription()+"</td>"  +
-                                 "<td> <img width=50 height=50 src=\" "+g.getPhotoAddress()+" \"></td>" +
-                                 "<td>"+
-                                // "<form action='watchGood' method=get> <input type=hidden name=\"goodsId\" value="+g.getGoodsId()+">" +
-                                 //   "<button type=\"submit\">Watch this</button> </form>"+"</td>"+
-                                "<button onclick=location.href='/watchGood?goodsId="+g.getGoodsId()+"'>Watch</button>"+
-                            "</tr>");
-            }
-            out.println("</table>");
-        %>
+        <table style='width:100%' border='1'>
+            <tr>
+                <th>GoodId</th>
+                <th>Name</th>
+                <th>SellerId</th>
+                <th>Price</th>
+                <th>Short Description</th>
+                <th>Description</th>
+                <th>Photo</th>
+            </tr>
+            <c:forEach items="${requestScope.goods}" var="g">
+                <tr>
+                    <td><c:out value="${g.goodsId}"      />  </td>
+                    <td><c:out value="${g.name}"         />  </td>
+                    <td><c:out value="${g.sellerId}"     />  </td>
+                    <td><c:out value="${g.price}"        />  </td>
+                    <td><c:out value="${g.shortDesc}"    />  </td>
+                    <td><c:out value="${g.description}"  />  </td>
+                    <td> <img width=50 height=50 src='<c:out value="${g.photoAddress}"/>' />   </td>
+                    <td><button onclick=location.href='/watchGood?goodsId=<c:out value="${g.goodsId}"/>'>Watch</button> </td>
+                </tr>
+            </c:forEach>
+        </table>
     </div>
+
     <div>
         <button onclick="location.href='/'">Back to main</button>
     </div>

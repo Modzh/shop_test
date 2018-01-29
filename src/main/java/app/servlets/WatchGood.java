@@ -24,31 +24,13 @@ public class WatchGood extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Session session = factory.openSession();
-        System.out.println(req.getParameter("goodsId"));
+
         int goodsId = Integer.parseInt(req.getParameter("goodsId"));
+        Good good = session.createQuery("SELECT g FROM Good g WHERE g.goodsId=:goodsId", Good.class)
+                            .setParameter("goodsId",goodsId).uniqueResult();
 
-        
-        //Query queryGoodId = session.createQuery("SELECT g.goodsId FROM Good g WHERE g.goodsId="+goodsId);
-        Query queryName = session.createQuery("SELECT g.name FROM Good g WHERE g.goodsId="+goodsId);
-        String name = (String) queryName.uniqueResult();
-        Query querySellerId = session.createQuery("SELECT g.sellerId FROM Good g WHERE g.goodsId="+goodsId);
-        int sellerId = (Integer) querySellerId.uniqueResult();
-        Query queryBuyerId = session.createQuery("SELECT g.buyerId FROM Good g WHERE g.goodsId="+goodsId);
-        int buyerId=0; if(queryBuyerId.uniqueResult() != null) buyerId = (Integer) queryBuyerId.uniqueResult();
-        Query queryDesc = session.createQuery("SELECT g.description FROM Good g WHERE g.goodsId="+goodsId);
-        String description = (String) queryDesc.uniqueResult();
-        Query queryShortDesc = session.createQuery("SELECT g.shortDesc FROM Good g WHERE g.goodsId="+goodsId);
-        String shortDesc = (String) queryShortDesc.uniqueResult();
-        Query queryPrice = session.createQuery("SELECT g.price FROM Good g WHERE g.goodsId="+goodsId);
-        double price = (Double) queryPrice.uniqueResult();
-        Query queryPhoto = session.createQuery("SELECT g.photoAddress FROM Good g WHERE g.goodsId="+goodsId);
-        String photoAddress = (String) queryPhoto.uniqueResult();
 
-        Good good = new Good(sellerId,name,shortDesc,description,price,photoAddress);
-        good.setGoodsId(goodsId);
-        good.setBuyerId(buyerId);
         req.setAttribute("good",good);
-
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("watchGood.jsp");
         requestDispatcher.forward(req,resp);
 

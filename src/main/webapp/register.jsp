@@ -17,8 +17,7 @@
     <%--<%--%>
         <%--if(request.getAttribute("email") != null ) out.println("<p>User with email "+ request.getAttribute("email") + " successfully added!</p>");--%>
     <%--%>--%>
-
-
+    <%=request.getSession().getAttribute("userId")%>
     <div>
         <form method="post">
             <label> Email:
