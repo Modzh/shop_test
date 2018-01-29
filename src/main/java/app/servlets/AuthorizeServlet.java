@@ -1,6 +1,7 @@
 package app.servlets;
 
 
+import app.entities.User;
 import app.model.ModelUsers;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -33,7 +34,7 @@ public class AuthorizeServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("pages/authorize.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("authorize.jsp");
         requestDispatcher.forward(req,resp);
     }
 
@@ -53,11 +54,16 @@ public class AuthorizeServlet extends HttpServlet {
         String pass = req.getParameter("pass");
         String flag = null;
 
-        Query queryEmail = session.createQuery("SELECT u.email FROM User u WHERE u.email='"+email+"'");
-        Query queryPass = session.createQuery("SELECT u.pass FROM User u WHERE u.email='"+email+"'");
-        if(  pass.equals(queryPass.uniqueResult()) && email.equalsIgnoreCase((String)(queryEmail.uniqueResult()))  ) {
+
+        User user = session.createQuery("SELECT u FROM User u WHERE u.email= :email and u.pass = :pass", User.class)
+                .setParameter("email", email)
+                .setParameter("pass", pass)
+                .uniqueResult();
+        if(  null != user) {
             flag = "success";
-            req.setAttribute("email", queryEmail.uniqueResult());
+            req.setAttribute("email", user.getEmail());
+            req.getSession().setAttribute("userId", user.getUserId());
+//            session.find(User.class, req.getSession().getAttribute("userId"));
         }
         else flag = "fail";
 
