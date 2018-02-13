@@ -59,7 +59,7 @@ public class AuthorizeServlet extends HttpServlet {
                 .setParameter("email", email)
                 .setParameter("pass", pass)
                 .uniqueResult();
-        if(  null != user) {
+        if(  null != user  ) {
             flag = "success";
             req.setAttribute("email", user.getEmail());
             req.getSession().setAttribute("userId", user.getUserId());
